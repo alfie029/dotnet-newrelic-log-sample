@@ -1,0 +1,1 @@
+# dotnet-newrelic-log-sample
