@@ -1,0 +1,28 @@
+name: Build-CSharp
+
+on:
+  push:
+    paths: 
+      - '**.cs'
+      - '**.csproj'
+      - '**.json'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - name: Code Style
+      run: |
+        dotnet format whitespace --verify-no-changes -v diag --no-restore
+        dotnet format style --verify-no-changes -v diag --no-restore
+
+    - name: Build Solution
+      run: |
+        dotnet build -c Release dotnet-newrelic-log-tutorials.sln

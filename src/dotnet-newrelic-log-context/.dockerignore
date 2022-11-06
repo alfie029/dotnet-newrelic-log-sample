@@ -1,0 +1,18 @@
+# Reference https://docs.docker.com/engine/reference/builder/#dockerignore-file 
+
+.git/
+.vs/
+.vscode/
+.*ignore
+.env
+*.md
+
+# Build results
+**/bin
+**/obj
+
+# ansible folder in root directory 
+ansible
+
+# terraform folder in root directory 
+terraform
