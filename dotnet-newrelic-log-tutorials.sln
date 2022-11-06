@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnet-newrelic-log-common", "src\dotnet-newrelic-log-common\dotnet-newrelic-log-common.csproj", "{69500C9D-5B7D-4C6F-9D05-E5F55941940B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnet-newrelic-log-api", "src\dotnet-newrelic-log-api\dotnet-newrelic-log-api.csproj", "{A4778566-F2CF-4C60-9E08-5B6CDE170C62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,10 @@ Global
 		{69500C9D-5B7D-4C6F-9D05-E5F55941940B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69500C9D-5B7D-4C6F-9D05-E5F55941940B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69500C9D-5B7D-4C6F-9D05-E5F55941940B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4778566-F2CF-4C60-9E08-5B6CDE170C62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4778566-F2CF-4C60-9E08-5B6CDE170C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4778566-F2CF-4C60-9E08-5B6CDE170C62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4778566-F2CF-4C60-9E08-5B6CDE170C62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{230D229C-2275-433F-93C6-D716DF515194} = {0F20E8D7-32B9-4D35-82BE-6CF6D8F324EC}

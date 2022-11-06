@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:62104",
+      "sslPort": 44348
+    }
+  },
+  "profiles": {
+    "webapi": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7041;http://localhost:5010",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "NEW_RELIC_APP_NAME": "dotnet-newrelic-log-api",
+        "NEW_RELIC_LICENSE_KEY": "real-license-key"
+      }
+    }
+  }
+}

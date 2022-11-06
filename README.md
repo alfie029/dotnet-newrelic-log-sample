@@ -10,3 +10,7 @@ This project contains common parts for newrelic-log tutorials
 ### dotnet-newrelic-log-context
 
 This project demonstrate how NewRelic logs in context work
+
+### dotnet-newrelic-log-api
+
+This project demonstrate how NewRelic logs API work by nuget package `Serilog.Sinks.NewRelic.Logs`
