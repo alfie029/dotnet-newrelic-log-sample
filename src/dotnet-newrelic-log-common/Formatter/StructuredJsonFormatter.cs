@@ -69,6 +69,14 @@ public class StructuredJsonFormatter : ITextFormatter
         output.WriteLogLevel(logEvent.Level);
         output.WriteTrailingComma();
 
+        // "message": "Business run ok with 00:00:01.5684733"
+        using var messageWriter = new StringWriter();
+        JsonValueFormatter.WriteQuotedJsonString(
+            logEvent.MessageTemplate.Render(logEvent.Properties).TruncateUnicodeStringByBytes(MaxMessageLengthInBytes)!,
+            messageWriter);
+        output.WriteRenderedMessage(messageWriter.ToString());
+        output.WriteTrailingComma();
+
         if (logEvent.Exception != null)
         {
             // "@x":"System.ArgumentNullException: Value cannot be null. (Parameter 'userId')\n   at namespace.method(String userId, String others) in /source_code/code.cs:line 91"

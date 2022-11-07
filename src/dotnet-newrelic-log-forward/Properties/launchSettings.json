@@ -1,0 +1,61 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:4061",
+      "sslPort": 44371
+    }
+  },
+  "profiles": {
+    "webapi(mac)": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7272;http://localhost:5236",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "webapi(linux)": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7272;http://localhost:5236",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "CORECLR_ENABLE_PROFILING": "1",
+        "CORECLR_PROFILER": "{36032161-FFC0-4B61-B559-F6C5D41BAE5A}",
+        "CORECLR_NEWRELIC_HOME": "$(ProjectDir)bin/$(Configuration)/net6.0/newrelic",
+        "CORECLR_PROFILER_PATH": "$(ProjectDir)bin/$(Configuration)/net6.0/newrelic/libNewRelicProfiler.so",
+        "NEW_RELIC_DISTRIBUTED_TRACING_ENABLED": "true",
+        "NEW_RELIC_APPLICATION_LOGGING_ENABLED": "false",
+        "NEW_RELIC_APPLICATION_LOGGING_FORWARDING_ENABLED": "false",
+        "NEW_RELIC_APP_NAME": "dotnet-newrelic-log-forward",
+        "NEW_RELIC_LICENSE_KEY": "real-license-key"
+      }
+    },
+    "webapi(windows)": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7272;http://localhost:5236",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "CORECLR_ENABLE_PROFILING": "1",
+        "CORECLR_PROFILER": "{36032161-FFC0-4B61-B559-F6C5D41BAE5A}",
+        "CORECLR_NEWRELIC_HOME": "$(ProjectDir)bin/$(Configuration)/net6.0/newrelic",
+        "CORECLR_PROFILER_PATH": "$(ProjectDir)bin/$(Configuration)/net6.0/newrelic/NewRelic.Profiler.dll",
+        "NEW_RELIC_DISTRIBUTED_TRACING_ENABLED": "true",
+        "NEW_RELIC_APPLICATION_LOGGING_ENABLED": "false",
+        "NEW_RELIC_APPLICATION_LOGGING_FORWARDING_ENABLED": "false",
+        "NEW_RELIC_APP_NAME": "dotnet-newrelic-log-forward",
+        "NEW_RELIC_LICENSE_KEY": "real-license-key"
+      }
+    }
+  }
+}

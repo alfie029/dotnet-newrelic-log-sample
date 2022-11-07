@@ -14,3 +14,7 @@ This project demonstrate how NewRelic logs in context work
 ### dotnet-newrelic-log-api
 
 This project demonstrate how NewRelic logs API work by nuget package `Serilog.Sinks.NewRelic.Logs`
+
+### dotnet-newrelic-log-forward
+
+This project demonstrate how to use Vector for forward logs to NewRelic

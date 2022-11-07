@@ -24,6 +24,9 @@ internal static class TextWriterExtensions
     public static void WriteMessageTemplate(this TextWriter output, string quotedMessageTemplate) =>
         output.Write($"\"@mt\":{quotedMessageTemplate}");
 
+    public static void WriteRenderedMessage(this TextWriter output, string quotedMessage) =>
+        output.Write($"\"message\":{quotedMessage}");
+
     public static void WriteReferredProperties(this TextWriter output, IEnumerable<string> quotedRefProperties) =>
         output.Write($"\"@r\":[{string.Join(',', quotedRefProperties)}]");
 

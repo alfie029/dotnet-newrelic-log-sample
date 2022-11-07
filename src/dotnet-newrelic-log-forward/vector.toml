@@ -1,0 +1,60 @@
+#                                    __   __  __
+#                                    \ \ / / / /
+#                                     \ V / / /
+#                                      \_/  \/
+#
+#                                    V E C T O R
+#                                   Configuration
+#
+# ------------------------------------------------------------------------------
+# Website: https://vector.dev
+# Docs: https://vector.dev/docs
+# Chat: https://chat.vector.dev
+# ------------------------------------------------------------------------------
+
+# Change this to use a non-default directory for Vector data storage:
+# data_dir = "/var/lib/vector"
+
+# Random Syslog-formatted logs
+[sources.dotnet]
+  # REQUIRED - General
+  type = "exec"
+  command = ["dotnet", "/app/dotnet-newrelic-log-forward.dll"]
+  mode = "streaming"
+
+# Parse console logs
+# See the Vector Remap Language reference for more info: https://vrl.dev
+[transforms.parse_logs]
+  # REQUIRED
+  type = "remap"
+  inputs = ["dotnet"]
+  source = """
+. = parse_json!(.message)
+.forward = "vector" 
+"""
+
+# Print parsed logs to stdout
+[sinks.newrelic]
+  # REQUIRED
+  type = "new_relic"
+  inputs = ["dotnet"]
+  account_id = "${NEW_RELIC_ACCOUNT_ID}"
+  license_key = "${NEW_RELIC_LICENSE_KEY}" # example, no default
+  api = "logs"
+  # OPTIONAL
+  region = "us"
+  
+[sinks.console]
+  type = "console"
+  inputs = [ "dotnet" ]
+  target = "stdout"
+  
+  [sinks.console.encoding]
+    codec = "text"
+
+# Vector's GraphQL API (disabled by default)
+# Uncomment to try it out with the `vector top` command or
+# in your browser at http://localhost:8686
+#[api]
+#enabled = true
+#address = "127.0.0.1:8686"
