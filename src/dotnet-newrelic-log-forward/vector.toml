@@ -15,14 +15,14 @@
 # Change this to use a non-default directory for Vector data storage:
 # data_dir = "/var/lib/vector"
 
-# Random Syslog-formatted logs
+# app streaming log as source
 [sources.dotnet]
   # REQUIRED - General
   type = "exec"
   command = ["dotnet", "/app/dotnet-newrelic-log-forward.dll"]
   mode = "streaming"
 
-# Parse console logs
+# Parse app streaming logs
 # See the Vector Remap Language reference for more info: https://vrl.dev
 [transforms.parse_logs]
   # REQUIRED
@@ -37,7 +37,7 @@
 [sinks.newrelic]
   # REQUIRED
   type = "new_relic"
-  inputs = ["dotnet"]
+  inputs = [ "parse_logs" ]
   account_id = "${NEW_RELIC_ACCOUNT_ID}"
   license_key = "${NEW_RELIC_LICENSE_KEY}" # example, no default
   api = "logs"
@@ -46,11 +46,11 @@
   
 [sinks.console]
   type = "console"
-  inputs = [ "dotnet" ]
+  inputs = [ "parse_logs" ]
   target = "stdout"
   
   [sinks.console.encoding]
-    codec = "text"
+    codec = "json"
 
 # Vector's GraphQL API (disabled by default)
 # Uncomment to try it out with the `vector top` command or
