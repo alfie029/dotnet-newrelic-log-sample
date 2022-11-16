@@ -9,6 +9,7 @@ Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
     .Enrich.FromLogContext()
     .Enrich.WithNewRelicLogsInContext()
+    .Enrich.WithProperty("dotnet.newrelic.logs.osversion", Environment.OSVersion.ToString())
     .WriteTo.Console(formatter: new StructuredJsonFormatter())
     .CreateBootstrapLogger();
 

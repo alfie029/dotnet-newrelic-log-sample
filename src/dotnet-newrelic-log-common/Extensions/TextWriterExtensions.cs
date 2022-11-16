@@ -15,8 +15,8 @@ internal static class TextWriterExtensions
     public static void WriteTimestamp(this TextWriter output, string utcDateTimeString) =>
         output.Write($"\"@t\":\"{utcDateTimeString}\"");
 
-    public static void WriteLogLevel(this TextWriter output, LogEventLevel logLevel) =>
-        output.Write($"\"@l\":\"{logLevel.ToString()}\"");
+    public static void WriteLogLevel(this TextWriter output, LogEventLevel logLevel, string key = "@l") =>
+        output.Write($"\"{key}\":\"{logLevel.ToString()}\"");
 
     public static void WriteExceptionMessage(this TextWriter output, string? quotedTruncatedExceptionMessage) =>
         output.Write($"\"@x\":{quotedTruncatedExceptionMessage}");

@@ -69,6 +69,10 @@ public class StructuredJsonFormatter : ITextFormatter
         output.WriteLogLevel(logEvent.Level);
         output.WriteTrailingComma();
 
+        // "level": "Warning"
+        output.WriteLogLevel(logEvent.Level, "level");
+        output.WriteTrailingComma();
+
         // "message": "Business run ok with 00:00:01.5684733"
         using var messageWriter = new StringWriter();
         JsonValueFormatter.WriteQuotedJsonString(
@@ -81,24 +85,13 @@ public class StructuredJsonFormatter : ITextFormatter
         {
             // "@x":"System.ArgumentNullException: Value cannot be null. (Parameter 'userId')\n   at namespace.method(String userId, String others) in /source_code/code.cs:line 91"
             using var exceptionStringWriter = new StringWriter();
-            JsonValueFormatter.WriteQuotedJsonString(
-                logEvent.Exception.ToString().TruncateUnicodeStringByBytes(MaxMessageLengthInBytes)!,
-                exceptionStringWriter);
+            JsonValueFormatter.WriteQuotedJsonString(logEvent.Exception.ToString(), exceptionStringWriter);
             output.WriteExceptionMessage(exceptionStringWriter.ToString());
             output.WriteTrailingComma();
         }
 
         logEvent.Properties
-            .SelectMany(p => p.Value switch
-            {
-                DictionaryValue dictValue => dictValue.Elements.Select(e =>
-                    new KeyValuePair<string, LogEventPropertyValue>(e.Key.Value?.ToString()!, e.Value)),
-                SequenceValue seqValue => seqValue.Elements.Select((e, i) =>
-                    new KeyValuePair<string, LogEventPropertyValue>($"{p.Key}@{i}", e)),
-                StructureValue stValue => stValue.Properties.Select(e =>
-                    new KeyValuePair<string, LogEventPropertyValue>($"{p.Key}.{e.Name}", e.Value)),
-                _ => new[] { p }
-            })
+            .Flatten(depth: 2)
             .Select(p => p.Key.FirstOrDefault() == '@'
                 ? new KeyValuePair<string, LogEventPropertyValue>($"@{p.Key}", p.Value)
                 : p)
@@ -112,6 +105,9 @@ public class StructuredJsonFormatter : ITextFormatter
                 output.WriteTrailingComma();
             });
 
+        // NOTE:
+        //   above loop would write an extra trailing comma, if no further properties appended, need remove it by
+        //   // output.Write("\b");
         output.WriteAssemblyInfo();
         output.WriteObjectEnd();
 
